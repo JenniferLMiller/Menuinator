@@ -3,14 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{36BE2DBE-3916-449A-B2BB-BEB3DC373395}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{48986E38-3FF1-42C9-A42A-6632A54C023A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4D302F2-9745-4AB0-B37A-B4012B7F5DED}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Menuinator", "src\Menuinator\Menuinator.xproj", "{796E98F9-5BEE-42D1-B2B9-86B700589BF6}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Menuinator", "src\Menuinator\Menuinator.xproj", "{88071F9F-1B29-425A-82B2-EB2CF173C83E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,15 +13,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{796E98F9-5BEE-42D1-B2B9-86B700589BF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{796E98F9-5BEE-42D1-B2B9-86B700589BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{796E98F9-5BEE-42D1-B2B9-86B700589BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{796E98F9-5BEE-42D1-B2B9-86B700589BF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88071F9F-1B29-425A-82B2-EB2CF173C83E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88071F9F-1B29-425A-82B2-EB2CF173C83E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88071F9F-1B29-425A-82B2-EB2CF173C83E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88071F9F-1B29-425A-82B2-EB2CF173C83E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{796E98F9-5BEE-42D1-B2B9-86B700589BF6} = {36BE2DBE-3916-449A-B2BB-BEB3DC373395}
+		{88071F9F-1B29-425A-82B2-EB2CF173C83E} = {48986E38-3FF1-42C9-A42A-6632A54C023A}
 	EndGlobalSection
 EndGlobal
