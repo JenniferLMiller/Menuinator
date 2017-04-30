@@ -8,6 +8,6 @@ namespace Menuinator.Models
     public class SupportTable
     {
         public int ID { get; set; }
-        public int Description { get; set; }
+        public string Description { get; set; }
     }
 }
