@@ -14,5 +14,6 @@ namespace Menuinator.Models
         public CookingMethod CookingMethod { get; set; }
         public PrepTime PrepTime { get; set; }
         public CookingTime CookingTime { get; set; }
+        public ApplicationUser UserID { get; set; }
     }
 }

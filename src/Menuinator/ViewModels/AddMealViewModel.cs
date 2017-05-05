@@ -25,10 +25,10 @@ namespace Menuinator.ViewModels
         public List<SelectListItem> CookingMethods { get; set; }
 
         [Display(Name ="How much cooking time is needed?")]
-        public CookingTime CookingTimes { get; set; }
+        public List<SelectListItem> CookingTimes { get; set; }
 
         [Display(Name = "How much prep time is needed?")]
-        public PrepTime PrepTimes { get; set; }
+        public List<SelectListItem> PrepTimes { get; set; }
 
         public AddMealViewModel()
         { }
@@ -86,11 +86,6 @@ namespace Menuinator.ViewModels
                     Text = item.Description
                 });
             }
-
-
-
-
-
         }
     }
 }
