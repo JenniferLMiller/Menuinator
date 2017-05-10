@@ -10,22 +10,22 @@ using Menuinator.Models;
 
 namespace Menuinator.Controllers
 {
-    public class MealsController : Controller
+    public class DefaultMealsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public MealsController(ApplicationDbContext context)
+        public DefaultMealsController(ApplicationDbContext context)
         {
             _context = context;    
         }
 
-        // GET: Meals
+        // GET: DefaultMeals
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Meals.ToListAsync());
+            return View(await _context.DefaultMeals.ToListAsync());
         }
 
-        // GET: Meals/Details/5
+        // GET: DefaultMeals/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,38 +33,38 @@ namespace Menuinator.Controllers
                 return NotFound();
             }
 
-            var meal = await _context.Meals.SingleOrDefaultAsync(m => m.ID == id);
-            if (meal == null)
+            var defaultMeal = await _context.DefaultMeals.SingleOrDefaultAsync(m => m.ID == id);
+            if (defaultMeal == null)
             {
                 return NotFound();
             }
 
-            return View(meal);
+            return View(defaultMeal);
         }
 
-        // GET: Meals/Create
+        // GET: DefaultMeals/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Meals/Create
+        // POST: DefaultMeals/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Description,Location,Name")] Meal meal)
+        public async Task<IActionResult> Create([Bind("ID,Description,Location,Name")] DefaultMeal defaultMeal)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(meal);
+                _context.Add(defaultMeal);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(meal);
+            return View(defaultMeal);
         }
 
-        // GET: Meals/Edit/5
+        // GET: DefaultMeals/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace Menuinator.Controllers
                 return NotFound();
             }
 
-            var meal = await _context.Meals.SingleOrDefaultAsync(m => m.ID == id);
-            if (meal == null)
+            var defaultMeal = await _context.DefaultMeals.SingleOrDefaultAsync(m => m.ID == id);
+            if (defaultMeal == null)
             {
                 return NotFound();
             }
-            return View(meal);
+            return View(defaultMeal);
         }
 
-        // POST: Meals/Edit/5
+        // POST: DefaultMeals/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,Location,Name")] Meal meal)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,Location,Name")] DefaultMeal defaultMeal)
         {
-            if (id != meal.ID)
+            if (id != defaultMeal.ID)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Menuinator.Controllers
             {
                 try
                 {
-                    _context.Update(meal);
+                    _context.Update(defaultMeal);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MealExists(meal.ID))
+                    if (!DefaultMealExists(defaultMeal.ID))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace Menuinator.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(meal);
+            return View(defaultMeal);
         }
 
-        // GET: Meals/Delete/5
+        // GET: DefaultMeals/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,29 +123,29 @@ namespace Menuinator.Controllers
                 return NotFound();
             }
 
-            var meal = await _context.Meals.SingleOrDefaultAsync(m => m.ID == id);
-            if (meal == null)
+            var defaultMeal = await _context.DefaultMeals.SingleOrDefaultAsync(m => m.ID == id);
+            if (defaultMeal == null)
             {
                 return NotFound();
             }
 
-            return View(meal);
+            return View(defaultMeal);
         }
 
-        // POST: Meals/Delete/5
+        // POST: DefaultMeals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var meal = await _context.Meals.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Meals.Remove(meal);
+            var defaultMeal = await _context.DefaultMeals.SingleOrDefaultAsync(m => m.ID == id);
+            _context.DefaultMeals.Remove(defaultMeal);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool MealExists(int id)
+        private bool DefaultMealExists(int id)
         {
-            return _context.Meals.Any(e => e.ID == id);
+            return _context.DefaultMeals.Any(e => e.ID == id);
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Menuinator.ViewModels
 {
-    public class AddMealViewModel
+    public class AddDefaultMealViewModel
     {
         public int MealID { get; set; }
         public int WeatherTypeID { get; set; }
@@ -16,7 +16,7 @@ namespace Menuinator.ViewModels
         public int CookingMethodID { get; set; }
         public int PrepTimeID { get; set; }
 
-        public Meal Meal { get; set; }
+        public DefaultMeal DefaultMeal { get; set; }
 
         [Display(Name = "This meal is best when the weather is:")]
         public List<SelectListItem> WeatherTypes { get; set; }
@@ -30,14 +30,14 @@ namespace Menuinator.ViewModels
         [Display(Name = "How much prep time is needed?")]
         public List<SelectListItem> PrepTimes { get; set; }
 
-        public AddMealViewModel()
+        public AddDefaultMealViewModel()
         { }
 
-        public AddMealViewModel(Meal meal, IEnumerable<WeatherType> weatherType,
+        public AddDefaultMealViewModel(DefaultMeal defaultMeal, IEnumerable<WeatherType> weatherType,
             IEnumerable<CookingMethod> cookingMethod, IEnumerable<CookingTime> cookingTime,
             IEnumerable<PrepTime> prepTime)
         {
-            Meal = meal;
+            DefaultMeal = defaultMeal;
 
             // create Weather Type list
             WeatherTypes = new List<SelectListItem>();
