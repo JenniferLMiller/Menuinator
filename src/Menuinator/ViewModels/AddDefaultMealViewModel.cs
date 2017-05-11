@@ -10,35 +10,44 @@ namespace Menuinator.ViewModels
 {
     public class AddDefaultMealViewModel
     {
-        public int MealID { get; set; }
-        public int WeatherTypeID { get; set; }
-        public int CookingTimeID { get; set; }
-        public int CookingMethodID { get; set; }
-        public int PrepTimeID { get; set; }
+        [Required(ErrorMessage = "Meal name is required")]
+        public string Name { get; set; }
 
-        public DefaultMeal DefaultMeal { get; set; }
+        public string Description { get; set; }
 
+        [Required]
         [Display(Name = "This meal is best when the weather is:")]
+        public int WeatherTypeID { get; set; }
+
         public List<SelectListItem> WeatherTypes { get; set; }
 
+        [Required]
         [Display(Name = "This meal uses the:")]
+        public int CookingMethodID { get; set; }
+
         public List<SelectListItem> CookingMethods { get; set; }
 
+        [Required]
         [Display(Name ="How much cooking time is needed?")]
-        public List<SelectListItem> CookingTimes { get; set; }
+        public int CookingTimeID { get; set; }
 
+        public List<SelectListItem> CookingTimes { get; set; }
+ 
+        [Required]
         [Display(Name = "How much prep time is needed?")]
+        public int PrepTimeID { get; set; }
+
         public List<SelectListItem> PrepTimes { get; set; }
 
         public AddDefaultMealViewModel()
         { }
 
-        public AddDefaultMealViewModel(DefaultMeal defaultMeal, IEnumerable<WeatherType> weatherType,
-            IEnumerable<CookingMethod> cookingMethod, IEnumerable<CookingTime> cookingTime,
+        public AddDefaultMealViewModel( 
+            IEnumerable<WeatherType> weatherType,
+            IEnumerable<CookingMethod> cookingMethod, 
+            IEnumerable<CookingTime> cookingTime,
             IEnumerable<PrepTime> prepTime)
         {
-            DefaultMeal = defaultMeal;
-
             // create Weather Type list
             WeatherTypes = new List<SelectListItem>();
 

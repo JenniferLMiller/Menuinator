@@ -1,4 +1,4 @@
-@model Menuinator.Models.DefaultMeal
+@model Menuinator.ViewModels.AddDefaultMealViewModel
 
 @{
     Layout = null;
@@ -19,20 +19,6 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Description" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Location" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Location" class="form-control" />
-                <span asp-validation-for="Location" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
             <label asp-for="Name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="Name" class="form-control" />
@@ -40,11 +26,36 @@
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="WeatherTypeID"></label>
+            <select asp-for="WeatherTypeID" asp-items="Model.WeatherTypes"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="CookingMethodID"></label>
+            <select asp-for="CookingMethodID" asp-items="Model.CookingMethods"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="CookingTimeID"></label>
+            <select asp-for="CookingTimeID" asp-items="Model.CookingTimes"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="PrepTimeID"></label>
+            <select asp-for="PrepTimeID" asp-items="Model.PrepTimes"></select>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
-    </div>
+    </div>   
 </form>
 
 <div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Menuinator.Data;
 using Menuinator.Models;
+using Menuinator.ViewModels;
 
 namespace Menuinator.Controllers
 {
@@ -45,7 +46,13 @@ namespace Menuinator.Controllers
         // GET: DefaultMeals/Create
         public IActionResult Create()
         {
-            return View();
+            AddDefaultMealViewModel addDefaultMealViewModel = new AddDefaultMealViewModel(
+               _context.WeatherTypes.ToList(), 
+               _context.CookingMethods.ToList(), 
+               _context.CookingTimes.ToList(), 
+               _context.PrepTimes.ToList());
+
+            return View(addDefaultMealViewModel);
         }
 
         // POST: DefaultMeals/Create
@@ -53,15 +60,34 @@ namespace Menuinator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Description,Location,Name")] DefaultMeal defaultMeal)
+        public async Task<IActionResult> Create(AddDefaultMealViewModel addDefaultMealViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(defaultMeal);
+                WeatherType newWeatherType = _context.WeatherTypes.Single(w => w.ID == addDefaultMealViewModel.WeatherTypeID);
+
+                CookingMethod newCookingMethod = _context.CookingMethods.Single(m => m.ID == addDefaultMealViewModel.CookingMethodID);
+
+                CookingTime newCookingTime = _context.CookingTimes.Single(t => t.ID == addDefaultMealViewModel.CookingTimeID);
+
+                PrepTime newPrepTime = _context.PrepTimes.Single(p => p.ID == addDefaultMealViewModel.PrepTimeID);
+
+                //Add the new default meal to the default meal table
+                DefaultMeal newDefaultMeal = new DefaultMeal
+                {
+                    Name = addDefaultMealViewModel.Name,
+                    Description = addDefaultMealViewModel.Description,
+                    WeatherType = newWeatherType,
+                    CookingMethod = newCookingMethod,
+                    CookingTime = newCookingTime,
+                    PrepTime = newPrepTime
+                };
+
+                _context.DefaultMeals.Add(newDefaultMeal);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(defaultMeal);
+            return View(addDefaultMealViewModel);
         }
 
         // GET: DefaultMeals/Edit/5
@@ -85,7 +111,7 @@ namespace Menuinator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,Location,Name")] DefaultMeal defaultMeal)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,Name")] DefaultMeal defaultMeal)
         {
             if (id != defaultMeal.ID)
             {
