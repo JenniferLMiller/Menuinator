@@ -1,4 +1,4 @@
-@model IEnumerable<Menuinator.Models.SupportTables.WeatherType>
+@model IEnumerable<Menuinator.Models.SupportTables.SupportTable>
 
 @{
     Layout = null;
@@ -8,22 +8,18 @@
 
 <html>
 <head>
-    <link href="~/css/Menuinator.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
-    <title>Weather Types</title>
+    <title>Index</title>
 </head>
 <body>
-    <h2>
-        Weather Type Descriptions
-    </h2>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="index-table">
+<table class="table">
     <thead>
         <tr>
             <th>
-                Weather Type Descriptions
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th></th>
         </tr>
@@ -36,6 +32,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>

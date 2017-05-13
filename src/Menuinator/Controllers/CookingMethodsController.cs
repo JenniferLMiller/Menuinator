@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Menuinator.Data;
-using Menuinator.Models;
+using Menuinator.Models.SupportTables;
 
 namespace Menuinator.Controllers
 {
@@ -22,7 +22,7 @@ namespace Menuinator.Controllers
         // GET: CookingMethods
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CookingMethods.ToListAsync());
+              return View(await _context.CookingMethods.ToListAsync());
         }
 
         // GET: CookingMethods/Details/5

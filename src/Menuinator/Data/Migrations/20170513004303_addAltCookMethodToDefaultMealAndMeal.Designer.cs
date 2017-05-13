@@ -8,9 +8,10 @@ using Menuinator.Data;
 namespace Menuinator.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170513004303_addAltCookMethodToDefaultMealAndMeal")]
+    partial class addAltCookMethodToDefaultMealAndMeal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -94,8 +95,6 @@ namespace Menuinator.Data.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AltCookingMethodID");
-
                     b.Property<int?>("CookingMethodID");
 
                     b.Property<int?>("CookingTimeID");
@@ -109,8 +108,6 @@ namespace Menuinator.Data.Migrations
                     b.Property<int?>("WeatherTypeID");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AltCookingMethodID");
 
                     b.HasIndex("CookingMethodID");
 
@@ -127,8 +124,6 @@ namespace Menuinator.Data.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("AltCookingMethodID");
 
                     b.Property<int?>("CookingMethodID");
 
@@ -147,8 +142,6 @@ namespace Menuinator.Data.Migrations
                     b.Property<int?>("WeatherTypeID");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AltCookingMethodID");
 
                     b.HasIndex("CookingMethodID");
 
@@ -338,10 +331,6 @@ namespace Menuinator.Data.Migrations
 
             modelBuilder.Entity("Menuinator.Models.DefaultMeal", b =>
                 {
-                    b.HasOne("Menuinator.Models.CookingMethod", "AltCookingMethod")
-                        .WithMany()
-                        .HasForeignKey("AltCookingMethodID");
-
                     b.HasOne("Menuinator.Models.CookingMethod", "CookingMethod")
                         .WithMany()
                         .HasForeignKey("CookingMethodID");
@@ -361,10 +350,6 @@ namespace Menuinator.Data.Migrations
 
             modelBuilder.Entity("Menuinator.Models.Meal", b =>
                 {
-                    b.HasOne("Menuinator.Models.CookingMethod", "AltCookingMethod")
-                        .WithMany()
-                        .HasForeignKey("AltCookingMethodID");
-
                     b.HasOne("Menuinator.Models.CookingMethod", "CookingMethod")
                         .WithMany()
                         .HasForeignKey("CookingMethodID");

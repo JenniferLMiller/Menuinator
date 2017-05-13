@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Menuinator.Data;
-using Menuinator.Models;
+using Menuinator.Models.SupportTables;
 
 namespace Menuinator.Controllers
 {

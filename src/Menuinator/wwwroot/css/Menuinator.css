@@ -1,27 +1,30 @@
 ﻿body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 /* Table style for the default meal index page*/
-.default-index-table {
-    table-layout: fixed;
+.index-table {
     border-collapse: collapse;
-    width: 50%;
     border: 3px solid purple;
 }
 
-.default-index-table th:nth-child(1) {
+.index-table th:nth-child(1) {
     text-align: left;
     width: 25%;
 }
-.default-index-table th:nth-child(2) {
+.index-table th:nth-child(2) {
     text-align: left;
-    width: 60%;
+    width: 25%;
 }
 
-.default-index-table tr {
+.index-table tr {
     padding: 10px 0;     /* 10px top & bottom padding, 0px left & right */
     border-width: 1px 0; /*  1px top & bottom border,  0px left & right */
     border-color: #dca8f7;  /*pale purple*/
     border-color: #abf28a;   /*pale lime*/
     border-style: solid;
+}
+
+.wide-input  {
+    width: 700px;
 }

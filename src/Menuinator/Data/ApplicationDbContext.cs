@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Menuinator.Models;
+using Menuinator.Models.SupportTables;
 
 namespace Menuinator.Data
 {
@@ -38,5 +39,6 @@ namespace Menuinator.Data
             builder.Entity<UserMeal>()
                 .HasKey(c => new { c.MealID, c.AppUserID });
         }
-    }
+
+     }
 }

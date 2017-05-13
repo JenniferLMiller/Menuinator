@@ -1,4 +1,4 @@
-@model IEnumerable<Menuinator.Models.CookingTime>
+@model IEnumerable<Menuinator.Models.SupportTables.CookingTime>
 
 @{
     Layout = null;
@@ -8,14 +8,18 @@
 
 <html>
 <head>
+    <link href="~/css/Menuinator.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Cooking Times</title>
 </head>
 <body>
+    <h2>
+        Cooking Times
+    </h2>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="index-table">
     <thead>
         <tr>
             <th>
@@ -32,7 +36,6 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>

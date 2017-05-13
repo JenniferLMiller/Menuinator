@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Menuinator.Data;
 using Menuinator.Models;
 using Menuinator.Services;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace Menuinator
 {
@@ -57,6 +58,12 @@ namespace Menuinator
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            // add this back in to change the location of the view (.cshtml) files
+            //services.Configure<RazorViewEngineOptions>(options =>
+            //{
+            //    options.ViewLocationExpanders.Add(new SupportTablesViewLocationExpander());
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

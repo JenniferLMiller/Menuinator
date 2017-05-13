@@ -1,4 +1,4 @@
-@model Menuinator.Models.WeatherType
+@model Menuinator.Models.SupportTables.WeatherType
 
 @{
     Layout = null;
@@ -8,8 +8,9 @@
 
 <html>
 <head>
+    <link href="~/css/Menuinator.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
+    <title>Edit Weather Type</title>
 </head>
 <body>
 
@@ -22,10 +23,11 @@
         <div class="form-group">
             <label asp-for="Description" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" class="form-control wide-input" />
                 <span asp-validation-for="Description" class="text-danger" />
             </div>
         </div>
+        <br /><br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Menuinator.Data;
 using Menuinator.Models;
+using Menuinator.Models.SupportTables;
 using Menuinator.ViewModels;
 
 namespace Menuinator.Controllers
@@ -48,7 +49,8 @@ namespace Menuinator.Controllers
         {
             AddDefaultMealViewModel addDefaultMealViewModel = new AddDefaultMealViewModel(
                _context.WeatherTypes.ToList(), 
-               _context.CookingMethods.ToList(), 
+               _context.CookingMethods.ToList(),
+               _context.CookingMethods.ToList(),
                _context.CookingTimes.ToList(), 
                _context.PrepTimes.ToList());
 
@@ -65,11 +67,9 @@ namespace Menuinator.Controllers
             if (ModelState.IsValid)
             {
                 WeatherType newWeatherType = _context.WeatherTypes.Single(w => w.ID == addDefaultMealViewModel.WeatherTypeID);
-
                 CookingMethod newCookingMethod = _context.CookingMethods.Single(m => m.ID == addDefaultMealViewModel.CookingMethodID);
-
+                CookingMethod newAltCookingMethod = _context.CookingMethods.Single(a => a.ID == addDefaultMealViewModel.AltCookingMethodID);
                 CookingTime newCookingTime = _context.CookingTimes.Single(t => t.ID == addDefaultMealViewModel.CookingTimeID);
-
                 PrepTime newPrepTime = _context.PrepTimes.Single(p => p.ID == addDefaultMealViewModel.PrepTimeID);
 
                 //Add the new default meal to the default meal table
@@ -79,6 +79,7 @@ namespace Menuinator.Controllers
                     Description = addDefaultMealViewModel.Description,
                     WeatherType = newWeatherType,
                     CookingMethod = newCookingMethod,
+                    AltCookingMethod = newAltCookingMethod,
                     CookingTime = newCookingTime,
                     PrepTime = newPrepTime
                 };

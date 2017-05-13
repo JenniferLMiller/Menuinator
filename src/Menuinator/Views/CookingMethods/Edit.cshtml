@@ -1,4 +1,4 @@
-@model Menuinator.Models.CookingMethod
+@model Menuinator.Models.SupportTables.CookingMethod
 
 @{
     Layout = null;
@@ -8,6 +8,7 @@
 
 <html>
 <head>
+    <link href="~/css/Menuinator.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <title>Edit</title>
 </head>
@@ -26,6 +27,7 @@
                 <span asp-validation-for="Description" class="text-danger" />
             </div>
         </div>
+        <br /><br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

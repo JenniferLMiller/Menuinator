@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Menuinator.Models;
+using Menuinator.Models.SupportTables;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -11,8 +12,10 @@ namespace Menuinator.ViewModels
     public class AddDefaultMealViewModel
     {
         [Required(ErrorMessage = "Meal name is required")]
+        [Display(Name = "Meal Name:")]
         public string Name { get; set; }
 
+        [Display(Name = "Description, sides, etc.:")]
         public string Description { get; set; }
 
         [Required]
@@ -26,6 +29,11 @@ namespace Menuinator.ViewModels
         public int CookingMethodID { get; set; }
 
         public List<SelectListItem> CookingMethods { get; set; }
+
+        [Display(Name = "Alternative or additional cooking appliance:")]
+        public int AltCookingMethodID { get; set; }
+
+        public List<SelectListItem> AltCookingMethods { get; set; }
 
         [Required]
         [Display(Name ="How much cooking time is needed?")]
@@ -44,57 +52,46 @@ namespace Menuinator.ViewModels
 
         public AddDefaultMealViewModel( 
             IEnumerable<WeatherType> weatherType,
-            IEnumerable<CookingMethod> cookingMethod, 
+            IEnumerable<CookingMethod> cookingMethod,
+            IEnumerable<CookingMethod> altCookingMethod,
             IEnumerable<CookingTime> cookingTime,
             IEnumerable<PrepTime> prepTime)
         {
             // create Weather Type list
             WeatherTypes = new List<SelectListItem>();
-
-            foreach (var item in weatherType)
-            {
-                WeatherTypes.Add(new SelectListItem
-                {
-                    Value = item.ID.ToString(),
-                    Text = item.Description
-                });
-            }
+            WeatherTypes = PopulateList(weatherType);
 
             // create Cooking Method list
             CookingMethods = new List<SelectListItem>();
+            CookingMethods = PopulateList(cookingMethod);
 
-            foreach (var item in cookingMethod)
-            {
-                CookingMethods.Add(new SelectListItem
-                {
-                    Value = item.ID.ToString(),
-                    Text = item.Description
-                });
-            }
+            // create Alternate Cooking Method list
+            AltCookingMethods = new List<SelectListItem>();
+            AltCookingMethods = PopulateList(altCookingMethod);
 
             // create Cooking Time list
             CookingTimes = new List<SelectListItem>();
-
-            foreach (var item in cookingTime)
-            {
-                CookingTimes.Add(new SelectListItem
-                {
-                    Value = item.ID.ToString(),
-                    Text = item.Description
-                });
-            }
+            CookingTimes = PopulateList(cookingTime);
 
             // create Prep Time list
             PrepTimes = new List<SelectListItem>();
+            PrepTimes = PopulateList(prepTime);
+        }
 
-            foreach (var item in prepTime)
+        private List<SelectListItem> PopulateList(IEnumerable<SupportTable> inputTable)
+        {
+            List<SelectListItem> newList = new List<SelectListItem>();
+
+            foreach (var item in inputTable)
             {
-                PrepTimes.Add(new SelectListItem
+                newList.Add(new SelectListItem
                 {
                     Value = item.ID.ToString(),
                     Text = item.Description
                 });
             }
+
+            return newList;
         }
     }
 }
