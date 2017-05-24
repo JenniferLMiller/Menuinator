@@ -7,5 +7,9 @@ namespace Menuinator.Models.SupportTables
 {
     public class CookingMethod : SupportTable
     {
+        public static implicit operator CookingMethod(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -104,7 +104,26 @@ namespace Menuinator.Controllers
             {
                 return NotFound();
             }
-            return View(defaultMeal);
+            else
+            {
+                EditDefaultMealViewModel editDefaultMealViewModel = new EditDefaultMealViewModel(
+                       defaultMeal.ID,
+                       defaultMeal.Name,
+                       defaultMeal.Description,
+                       _context.WeatherTypes.ToList(),
+                       defaultMeal.WeatherTypeID,
+                       _context.CookingMethods.ToList(),
+                       defaultMeal.CookingMethodID,
+                       _context.CookingMethods.ToList(),
+                       defaultMeal.AltCookingMethodID,
+                       _context.CookingTimes.ToList(),
+                       defaultMeal.CookingTimeID,
+                       _context.PrepTimes.ToList(),
+                       defaultMeal.PrepTimeID);
+
+                _context.SaveChanges();
+                return View(editDefaultMealViewModel);
+            }
         }
 
         // POST: DefaultMeals/Edit/5
@@ -112,23 +131,37 @@ namespace Menuinator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,Name")] DefaultMeal defaultMeal)
+        public async Task<IActionResult> Edit(EditDefaultMealViewModel editDefaultMealViewModel)
         {
-            if (id != defaultMeal.ID)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(defaultMeal);
+                    WeatherType newWeatherType = _context.WeatherTypes.Single(w => w.ID == editDefaultMealViewModel.WeatherTypeID);
+                    CookingMethod newCookingMethod = _context.CookingMethods.Single(m => m.ID == editDefaultMealViewModel.CookingMethodID);
+                    CookingMethod newAltCookingMethod = _context.CookingMethods.Single(a => a.ID == editDefaultMealViewModel.AltCookingMethodID);
+                    CookingTime newCookingTime = _context.CookingTimes.Single(t => t.ID == editDefaultMealViewModel.CookingTimeID);
+                    PrepTime newPrepTime = _context.PrepTimes.Single(p => p.ID == editDefaultMealViewModel.PrepTimeID);
+
+                    //Update the default meal in the default meal table
+                    DefaultMeal editDefaultMeal = new DefaultMeal
+                    {
+                        ID = editDefaultMealViewModel.DefaultMealID,
+                        Name = editDefaultMealViewModel.Name,
+                        Description = editDefaultMealViewModel.Description,
+                        WeatherType = newWeatherType,
+                        CookingMethod = newCookingMethod,
+                        AltCookingMethod = newAltCookingMethod,
+                        CookingTime = newCookingTime,
+                        PrepTime = newPrepTime
+                    };
+
+                    _context.Update(editDefaultMeal);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DefaultMealExists(defaultMeal.ID))
+                    if (!DefaultMealExists(editDefaultMealViewModel.DefaultMealID))
                     {
                         return NotFound();
                     }
@@ -139,9 +172,10 @@ namespace Menuinator.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(defaultMeal);
+            return View(editDefaultMealViewModel);
         }
 
+       
         // GET: DefaultMeals/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

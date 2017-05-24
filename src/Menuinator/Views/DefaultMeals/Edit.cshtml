@@ -1,4 +1,4 @@
-@model Menuinator.Models.DefaultMeal
+@model Menuinator.ViewModels.EditDefaultMealViewModel
 
 @{
     Layout = null;
@@ -19,15 +19,7 @@
         <h4>DefaultMeal</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ID" />
-        <div class="form-group">
-            <label asp-for="Description" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger" />
-            </div>
-        </div>
-
+        <input type="hidden" asp-for="DefaultMealID" />
         <div class="form-group">
             <label asp-for="Name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -35,14 +27,77 @@
                 <span asp-validation-for="Name" class="text-danger" />
             </div>
         </div>
+
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control wide-input" />
+                <span asp-validation-for="Description" class="text-danger" />
             </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label asp-for="CookingMethodID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="CookingMethodID" asp-items="Model.CookingMethods"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="AltCookingMethodID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="AltCookingMethodID" asp-items="Model.AltCookingMethods"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="CookingTimeID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="CookingTimeID" asp-items="Model.CookingTimes"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="PrepTimeID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="PrepTimeID" asp-items="Model.PrepTimes"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="WeatherTypeID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="WeatherTypeID" asp-items="Model.WeatherTypes"></select>
+                    </td>
+                </tr>                  
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
 </form>
 
+<br />
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

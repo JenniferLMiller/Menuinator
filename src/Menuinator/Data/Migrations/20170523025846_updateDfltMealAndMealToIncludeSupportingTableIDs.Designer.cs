@@ -8,9 +8,10 @@ using Menuinator.Data;
 namespace Menuinator.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170523025846_updateDfltMealAndMealToIncludeSupportingTableIDs")]
+    partial class updateDfltMealAndMealToIncludeSupportingTableIDs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
