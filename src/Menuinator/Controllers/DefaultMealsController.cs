@@ -40,8 +40,24 @@ namespace Menuinator.Controllers
             {
                 return NotFound();
             }
-
-            return View(defaultMeal);
+            else
+            {
+                ViewDefaultMealViewModel viewDefaultMealViewModel = new ViewDefaultMealViewModel(
+                    defaultMeal.ID,
+                    defaultMeal.Name,
+                    defaultMeal.Description,
+                    _context.WeatherTypes.ToList(),
+                    defaultMeal.WeatherTypeID,
+                    _context.CookingMethods.ToList(),
+                    defaultMeal.CookingMethodID,
+                    _context.CookingMethods.ToList(),
+                    defaultMeal.AltCookingMethodID,
+                    _context.CookingTimes.ToList(),
+                    defaultMeal.CookingTimeID,
+                    _context.PrepTimes.ToList(),
+                    defaultMeal.PrepTimeID);
+                return View(viewDefaultMealViewModel);
+            }
         }
 
         // GET: DefaultMeals/Create
@@ -189,8 +205,24 @@ namespace Menuinator.Controllers
             {
                 return NotFound();
             }
-
-            return View(defaultMeal);
+            else
+            {
+                ViewDefaultMealViewModel viewDefaultMealViewModel = new ViewDefaultMealViewModel(
+                    defaultMeal.ID,
+                    defaultMeal.Name,
+                    defaultMeal.Description,
+                    _context.WeatherTypes.ToList(),
+                    defaultMeal.WeatherTypeID,
+                    _context.CookingMethods.ToList(),
+                    defaultMeal.CookingMethodID,
+                    _context.CookingMethods.ToList(),
+                    defaultMeal.AltCookingMethodID,
+                    _context.CookingTimes.ToList(),
+                    defaultMeal.CookingTimeID,
+                    _context.PrepTimes.ToList(),
+                    defaultMeal.PrepTimeID);
+                return View(viewDefaultMealViewModel);
+            }
         }
 
         // POST: DefaultMeals/Delete/5

@@ -10,14 +10,14 @@ using Menuinator.ViewModels.Common_Classes;
 
 namespace Menuinator.ViewModels
 {
-    public class EditDefaultMealViewModel : AddDefaultMealViewModel
+    public class ViewDefaultMealViewModel : AddDefaultMealViewModel
     {
         public int DefaultMealID { get; set; }
    
-        public EditDefaultMealViewModel()
+        public ViewDefaultMealViewModel()
         { }
 
-       public EditDefaultMealViewModel(
+       public ViewDefaultMealViewModel(
                 int defaultMealID,
                 string defaultMealName,
                 string defaultMealDescription,
@@ -38,23 +38,23 @@ namespace Menuinator.ViewModels
 
             // create Weather Type list
             WeatherTypes = new List<SelectListItem>();
-            WeatherTypes = PopulateViewList.EditViewModelList(weatherType, WeatherTypeID);
+            WeatherTypes = PopulateViewList.View_ViewModelList(weatherType, WeatherTypeID);
 
             // create Cooking Method list
             CookingMethods = new List<SelectListItem>();
-            CookingMethods = PopulateViewList.EditViewModelList(cookingMethod, CookingMethodID);
+            CookingMethods = PopulateViewList.View_ViewModelList(cookingMethod, CookingMethodID);
 
             // create Alternate Cooking Method list
             AltCookingMethods = new List<SelectListItem>();
-            AltCookingMethods = PopulateViewList.EditViewModelList(altCookingMethod, AltCookingMethodID);
+            AltCookingMethods = PopulateViewList.View_ViewModelList(altCookingMethod, AltCookingMethodID);
 
             // create Cooking Time list
             CookingTimes = new List<SelectListItem>();
-            CookingTimes = PopulateViewList.EditViewModelList(cookingTime, CookingTimeID);
+            CookingTimes = PopulateViewList.View_ViewModelList(cookingTime, CookingTimeID);
 
             // create Prep Time list
             PrepTimes = new List<SelectListItem>();
-            PrepTimes = PopulateViewList.EditViewModelList(prepTime, PrepTimeID);
+            PrepTimes = PopulateViewList.View_ViewModelList(prepTime, PrepTimeID);
         }
     }
 }

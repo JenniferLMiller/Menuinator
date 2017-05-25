@@ -6,6 +6,7 @@ using Menuinator.Models;
 using Menuinator.Models.SupportTables;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Menuinator.ViewModels.Common_Classes;
 
 namespace Menuinator.ViewModels
 {
@@ -59,39 +60,23 @@ namespace Menuinator.ViewModels
         {
             // create Weather Type list
             WeatherTypes = new List<SelectListItem>();
-            WeatherTypes = PopulateList(weatherType);
+            WeatherTypes = PopulateViewList.AddViewModelList(weatherType);
 
             // create Cooking Method list
             CookingMethods = new List<SelectListItem>();
-            CookingMethods = PopulateList(cookingMethod);
+            CookingMethods = PopulateViewList.AddViewModelList(cookingMethod);
 
             // create Alternate Cooking Method list
             AltCookingMethods = new List<SelectListItem>();
-            AltCookingMethods = PopulateList(altCookingMethod);
+            AltCookingMethods = PopulateViewList.AddViewModelList(altCookingMethod);
 
             // create Cooking Time list
             CookingTimes = new List<SelectListItem>();
-            CookingTimes = PopulateList(cookingTime);
+            CookingTimes = PopulateViewList.AddViewModelList(cookingTime);
 
             // create Prep Time list
             PrepTimes = new List<SelectListItem>();
-            PrepTimes = PopulateList(prepTime);
-        }
-
-        private List<SelectListItem> PopulateList(IEnumerable<SupportTable> inputTable)
-        {
-            List<SelectListItem> newList = new List<SelectListItem>();
-
-            foreach (var item in inputTable)
-            {
-                newList.Add(new SelectListItem
-                {
-                    Value = item.ID.ToString(),
-                    Text = item.Description
-                });
-            }
-
-            return newList;
-        }
+            PrepTimes = PopulateViewList.AddViewModelList(prepTime);
+        }      
     }
 }
