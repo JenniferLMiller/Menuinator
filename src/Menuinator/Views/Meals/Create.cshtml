@@ -1,0 +1,116 @@
+@model Menuinator.ViewModels.AddMealViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/css/Menuinator.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Add a meal</title>
+</head>
+<body>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Meal</h4>
+        <hr />
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control wide-input" />
+                <span asp-validation-for="Description" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Location" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Location" class="form-control wide-input" />
+                <span asp-validation-for="Location" class="text-danger" />
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label asp-for="WeatherTypeID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="WeatherTypeID" asp-items="Model.WeatherTypes"></select>
+                    </td>       
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="CookingMethodID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="CookingMethodID" asp-items="Model.CookingMethods"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="AltCookingMethodID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="AltCookingMethodID" asp-items="Model.AltCookingMethods"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="CookingTimeID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="CookingTimeID" asp-items="Model.CookingTimes"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="PrepTimeID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="PrepTimeID" asp-items="Model.PrepTimes"></select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="hidden" asp-for="UserID" class="form-control" />
+                <span asp-validation-for="UserID" class="text-danger" />
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>
