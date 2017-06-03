@@ -10,6 +10,9 @@ using Menuinator.Models;
 using Menuinator.Models.SupportTables;
 using Menuinator.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using System.Security.Principal;
+
 
 namespace Menuinator.Controllers
 {
@@ -19,7 +22,7 @@ namespace Menuinator.Controllers
 
         public MealsController(ApplicationDbContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         // GET: Meals
@@ -49,15 +52,25 @@ namespace Menuinator.Controllers
         // GET: Meals/Create
         public IActionResult Create()
         {
-           // string UID = User.Identity.GetUserId();
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+            if(userId != null)
+            {
                 AddMealViewModel addMealViewModel = new AddMealViewModel(
-                   _context.WeatherTypes.ToList(),
-                   _context.CookingMethods.ToList(),
-                   _context.CookingMethods.ToList(),
-                   _context.CookingTimes.ToList(),
-                   _context.PrepTimes.ToList());
+                        userId,
+                       _context.WeatherTypes.ToList(),
+                       _context.CookingMethods.ToList(),
+                       _context.CookingMethods.ToList(),
+                       _context.CookingTimes.ToList(),
+                       _context.PrepTimes.ToList());
 
                 return View(addMealViewModel);
+            }
+            else
+                return RedirectToAction("Home/Index");
+
         }
 
         // POST: Meals/Create
