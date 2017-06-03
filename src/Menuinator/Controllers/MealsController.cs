@@ -107,12 +107,23 @@ namespace Menuinator.Controllers
             {
                 return NotFound();
             }
-            ViewData["AltCookingMethodID"] = new SelectList(_context.CookingMethods, "ID", "ID", meal.AltCookingMethodID);
-            ViewData["CookingMethodID"] = new SelectList(_context.CookingMethods, "ID", "ID", meal.CookingMethodID);
-            ViewData["CookingTimeID"] = new SelectList(_context.CookingTimes, "ID", "ID", meal.CookingTimeID);
-            ViewData["PrepTimeID"] = new SelectList(_context.PrepTimes, "ID", "ID", meal.PrepTimeID);
-            ViewData["WeatherTypeID"] = new SelectList(_context.WeatherTypes, "ID", "ID", meal.WeatherTypeID);
-            return View(meal);
+            EditMealViewModel editMealViewModel = new EditMealViewModel(
+                       meal.ID,
+                       meal.Name,
+                       meal.Description,
+                       _context.WeatherTypes.ToList(),
+                       meal.WeatherTypeID,
+                       _context.CookingMethods.ToList(),
+                       meal.CookingMethodID,
+                       _context.CookingMethods.ToList(),
+                       meal.AltCookingMethodID,
+                       _context.CookingTimes.ToList(),
+                       meal.CookingTimeID,
+                       _context.PrepTimes.ToList(),
+                       meal.PrepTimeID);
+
+            _context.SaveChanges();
+            return View(editMealViewModel);
         }
 
         // POST: Meals/Edit/5

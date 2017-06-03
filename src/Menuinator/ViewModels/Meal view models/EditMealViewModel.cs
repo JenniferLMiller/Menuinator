@@ -12,15 +12,15 @@ namespace Menuinator.ViewModels
 {
     public class EditMealViewModel : AddMealViewModel
     {
-        public int DefaultMealID { get; set; }
+        public int mealID { get; set; }
    
         public EditMealViewModel()
         { }
 
        public EditMealViewModel(
-                int defaultMealID,
-                string defaultMealName,
-                string defaultMealDescription,
+                int MealID,
+                string MealName,
+                string MealDescription,
                 IEnumerable<WeatherType> weatherType,
                 int WeatherTypeID,
                 IEnumerable<CookingMethod> cookingMethod,
@@ -32,9 +32,9 @@ namespace Menuinator.ViewModels
                 IEnumerable<PrepTime> prepTime,
                 int PrepTimeID)
         {
-            DefaultMealID = defaultMealID;
-            Name = defaultMealName;
-            Description = defaultMealDescription;
+            mealID = MealID;
+            Name = MealName;
+            Description = MealDescription;
 
             // create Weather Type list
             WeatherTypes = new List<SelectListItem>();
