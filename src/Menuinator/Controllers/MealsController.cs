@@ -195,8 +195,25 @@ namespace Menuinator.Controllers
             {
                 return NotFound();
             }
-
-            return View(meal);
+            else
+            {
+                ViewMealViewModel viewMealViewModel = new ViewMealViewModel(
+                    meal.ID,
+                    meal.Name,
+                    meal.Description,
+                    meal.Location,
+                    _context.WeatherTypes.ToList(),
+                    meal.WeatherTypeID,
+                    _context.CookingMethods.ToList(),
+                    meal.CookingMethodID,
+                    _context.CookingMethods.ToList(),
+                    meal.AltCookingMethodID,
+                    _context.CookingTimes.ToList(),
+                    meal.CookingTimeID,
+                    _context.PrepTimes.ToList(),
+                    meal.PrepTimeID);
+                return View(viewMealViewModel);
+            }
         }
 
         // POST: Meals/Delete/5

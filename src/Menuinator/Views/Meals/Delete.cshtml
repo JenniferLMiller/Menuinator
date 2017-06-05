@@ -1,4 +1,4 @@
-@model Menuinator.Models.Meal
+@model Menuinator.ViewModels.ViewMealViewModel
 
 @{
     Layout = null;
@@ -8,41 +8,84 @@
 
 <html>
 <head>
+    <link href="~/css/Menuinator.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
+    <title>Delete Meal</title>
 </head>
 <body>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this meal?</h3>
 <div>
-    <h4>Meal</h4>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserID)
-        </dd>
-    </dl>
+    <div class="form-group">
+        <label asp-for="Description" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Description" class="form-control wide-input" />
+            <span asp-validation-for="Description" class="text-danger" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Location" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Location" class="form-control wide-input" />
+            <span asp-validation-for="Location" class="text-danger" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label asp-for="CookingMethodID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="CookingMethodID" asp-items="Model.CookingMethods"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="AltCookingMethodID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="AltCookingMethodID" asp-items="Model.AltCookingMethods"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="CookingTimeID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="CookingTimeID" asp-items="Model.CookingTimes"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="PrepTimeID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="PrepTimeID" asp-items="Model.PrepTimes"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="WeatherTypeID"></label>
+                    </td>
+                    <td>
+                        <select asp-for="WeatherTypeID" asp-items="Model.WeatherTypes"></select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     
     <form asp-action="Delete">
         <div class="form-actions no-color">
