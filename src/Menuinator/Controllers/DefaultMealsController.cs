@@ -78,7 +78,7 @@ namespace Menuinator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AddMealViewModel addDefaultMealViewModel)
+        public async Task<IActionResult> Create(AddDefaultMealViewModel addDefaultMealViewModel)
         {
             if (ModelState.IsValid)
             {

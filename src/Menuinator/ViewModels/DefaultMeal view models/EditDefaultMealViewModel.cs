@@ -10,7 +10,7 @@ using Menuinator.ViewModels.Common_Classes;
 
 namespace Menuinator.ViewModels
 {
-    public class EditDefaultMealViewModel : AddMealViewModel
+    public class EditDefaultMealViewModel : AddDefaultMealViewModel
     {
         public int DefaultMealID { get; set; }
    
