@@ -14,11 +14,6 @@ namespace Menuinator.Classes
             var claimsIdentity = (ClaimsIdentity)principal.Identity;
             var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             return claim.Value;
-
-
-            // var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-            // var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            // var userId = claim.Value;
         }
     }
 }

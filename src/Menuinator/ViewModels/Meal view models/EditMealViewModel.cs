@@ -21,6 +21,7 @@ namespace Menuinator.ViewModels
                 int MealID,
                 string MealName,
                 string MealDescription,
+                string MealUserID,
                 IEnumerable<WeatherType> weatherType,
                 int WeatherTypeID,
                 IEnumerable<CookingMethod> cookingMethod,
@@ -35,6 +36,7 @@ namespace Menuinator.ViewModels
             mealID = MealID;
             Name = MealName;
             Description = MealDescription;
+            UserID = MealUserID;
 
             // create Weather Type list
             WeatherTypes = new List<SelectListItem>();
