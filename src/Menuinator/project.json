@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-Menuinator-b3bb5dfc-7ad4-4003-b7c7-4677442d3021",
 
   "dependencies": {
@@ -41,10 +41,11 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Microsoft.AspNetCore.Rewrite": "1.0.2"
   },
 
   "tools": {

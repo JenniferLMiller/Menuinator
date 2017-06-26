@@ -13,6 +13,8 @@ using Menuinator.Data;
 using Menuinator.Models;
 using Menuinator.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace Menuinator
 {
@@ -43,6 +45,12 @@ namespace Menuinator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // require SSL  
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
+
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
@@ -72,6 +80,10 @@ namespace Menuinator
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            var options = new RewriteOptions()
+               .AddRedirectToHttps();
+
+            app.UseRewriter(options);
             app.UseApplicationInsightsRequestTelemetry();
 
             if (env.IsDevelopment())
