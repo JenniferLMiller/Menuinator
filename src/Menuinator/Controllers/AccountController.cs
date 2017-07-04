@@ -11,6 +11,8 @@ using Microsoft.Extensions.Logging;
 using Menuinator.Models;
 using Menuinator.Models.AccountViewModels;
 using Menuinator.Services;
+using Menuinator.Data;
+using Menuinator.ViewModels;
 
 namespace Menuinator.Controllers
 {
@@ -22,19 +24,22 @@ namespace Menuinator.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _context = context;
         }
 
         //
@@ -109,6 +114,43 @@ namespace Menuinator.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //add default meals to new account
+                    var allDefaultMeals = _context.DefaultMeals.ToList();
+
+                    Meal allNewMeals = new Meal();
+
+                    foreach (DefaultMeal defaultMeal in allDefaultMeals)
+                    {
+                        AddMealViewModel meal = new AddMealViewModel(
+                            user.Id,
+                            defaultMeal.Name,
+                            defaultMeal.Description,
+                            defaultMeal.WeatherTypeID,
+                            defaultMeal.CookingMethodID,
+                            defaultMeal.AltCookingMethodID,
+                            defaultMeal.CookingTimeID,
+                            defaultMeal.PrepTimeID
+                            );
+
+                        Meal newMeal = new Meal
+                        {
+                            Name = meal.Name,
+                            Description = meal.Description,
+                            Location = meal.Location,
+                            UserID = meal.UserID,
+                            WeatherTypeID = meal.WeatherTypeID,
+                            CookingMethodID = meal.CookingMethodID,
+                            AltCookingMethodID = meal.AltCookingMethodID,
+                            CookingTimeID = meal.CookingTimeID,
+                            PrepTimeID = meal.PrepTimeID
+                        };
+
+                        _context.Meals.Add(newMeal);
+                    //    await _context.SaveChangesAsync();
+                    }
+                    //    _context.SaveChanges();
+                        await _context.SaveChangesAsync();
+                   ///// }
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

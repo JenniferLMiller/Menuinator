@@ -57,6 +57,7 @@ namespace Menuinator.ViewModels
         public AddMealViewModel()
         { }
 
+        //for a meal entered directly by the user
         public AddMealViewModel( 
             string userId,
             IEnumerable<WeatherType> weatherType,
@@ -87,6 +88,28 @@ namespace Menuinator.ViewModels
             // create Prep Time list
             PrepTimes = new List<SelectListItem>();
             PrepTimes = PopulateViewList.AddViewModelList(prepTime);
-        }      
+        }
+
+        //for a meal added when a user account is created
+        public AddMealViewModel(
+            string userId,
+            string name,
+            string description,
+            int weatherTypeID,
+            int cookingMethodID,
+            int altCookingMethodID,
+            int cookingTimeID,
+            int prepTimeID)
+        {
+            // include user id as foreign key to link meals with user
+            UserID = userId;
+            Name = name;
+            Description = description;
+            WeatherTypeID = weatherTypeID;
+            CookingMethodID = cookingMethodID;
+            AltCookingMethodID = altCookingMethodID;
+            CookingTimeID = cookingTimeID;
+            PrepTimeID = prepTimeID;
+        }
     }
 }
