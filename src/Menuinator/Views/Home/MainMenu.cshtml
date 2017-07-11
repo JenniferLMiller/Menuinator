@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/css/Menuinator.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>What would you like to do?</h2>
+            <ul>
+                <li><a asp-action="Meals/Index">View and Edit Meals</a></li>
+                <li><a asp-action="Menus/Index">View Previous Menus</a></li>
+                <li><a asp-action="Menus/Create">Create a Menu</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2>How to use the Menuinator</h2>
+            <ol>
+                <li>Create an account and several starter meals will be created</li>
+                <li>Change or remove the starter meals, and add any additional family favorites</li>
+                <li>Tell the Menuinator how many meals to select, and what the weather will be like</li>
+                <li>The Menuinator will plan your menu!</li>
+            </ol>
+        </div>
+    </div>
+</body>
+
+</html>
