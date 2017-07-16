@@ -31,5 +31,10 @@ namespace Menuinator.Controllers
         {
             return View();
         }
+
+        public IActionResult MainMenu()
+        {
+            return View();
+        }
     }
 }
