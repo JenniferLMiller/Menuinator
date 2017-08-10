@@ -1,6 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Menuinator.ViewModels.Menu_view_models.AddMenuViewModel
+
+
 @{
 }
 <!DOCTYPE html>
@@ -12,26 +12,54 @@
 </head>
 
 <body>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Create a Menu</h2>
+                <form asp-controller="Menus" asp-action="Create">
+                    <div class="form-group">
+                        <label asp-for="Description" class="col-md-7 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="Description" class="form-control wide-input" />
+                            <span asp-validation-for="Description" class="text-danger" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="MealCount" class="col-md-7 control-label"></label>
+                        <div class="col-md-10">
+                            <input asp-for="MealCount" />
+                            <span asp-validation-for="MealCount" class="text-danger" />
+                        </div>
+                    </div>
+                    <br />
 
-    <div class="row">
-        <div class="col-md-6">
-            <h2>What would you like to do?</h2>
-            <ul>
-                <li><a asp-controller="Meals" asp-action="Index">View and Edit Meals</a></li>
-                <li><a asp-action="Menus/Index">View Previous Menus</a></li>
-                <li><a asp-action="Menus/Create">Create a Menu</a></li>
-            </ul>
+                    <div class="form-group">
+                        <label class="col-md-7 control-label">What will the weather be like?</label>
+                        <div class="col-md-10">
+                            <select asp-for="WeatherTypeID" asp-items="Model.WeatherTypes"></select>
+                        </div>
+                    </div>
+                        
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <br />
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-md-6">
+
+                <h2>What else would you like to do?</h2>
+                <ul>
+                    <li><a asp-controller="Meals" asp-action="Index"><h4>View and Edit Meals</h4></a></li>
+
+                    <li><a asp-controller="Menus" asp-action="Index"><h4>View Previous Menus</h4></a></li>
+
+                </ul>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h2>How to use the Menuinator</h2>
-            <ol>
-                <li>Create an account and several starter meals will be created</li>
-                <li>Change or remove the starter meals, and add any additional family favorites</li>
-                <li>Tell the Menuinator how many meals to select, and what the weather will be like</li>
-                <li>The Menuinator will plan your menu!</li>
-            </ol>
-        </div>
-    </div>
 </body>
 
 </html>

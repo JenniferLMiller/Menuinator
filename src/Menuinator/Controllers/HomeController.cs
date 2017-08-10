@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Menuinator.ViewModels.Menu_view_models;
+using System.Security.Claims;
+using Menuinator.Data;
 
 namespace Menuinator.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
             return View();
@@ -34,7 +43,24 @@ namespace Menuinator.Controllers
 
         public IActionResult MainMenu()
         {
-            return View();
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+            var mealCount = 0;
+
+            if (userId != null)
+            {
+                AddMenuViewModel addMenuViewModel = new AddMenuViewModel(
+                        userId,
+                        mealCount,
+                       _context.WeatherTypes.ToList());
+
+                return View(addMenuViewModel);
+            }
+            else
+                return RedirectToAction("Home/Index");
+
+          //  return View();
         }
     }
 }
