@@ -7,6 +7,7 @@ using Menuinator.ViewModels.Menu_view_models;
 using System.Security.Claims;
 using Menuinator.Data;
 
+
 namespace Menuinator.Controllers
 {
     public class HomeController : Controller
@@ -46,16 +47,22 @@ namespace Menuinator.Controllers
             var claimsIdentity = (ClaimsIdentity)this.User.Identity;
             var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             var userId = claim.Value;
-            var mealCount = 0;
+            var mealCount = 5;
+            var description = "";
+            var weatherTypeId = 0;
 
             if (userId != null)
             {
                 AddMenuViewModel addMenuViewModel = new AddMenuViewModel(
+                        description,
                         userId,
                         mealCount,
+                        weatherTypeId,
                        _context.WeatherTypes.ToList());
 
+                //TempData["AddMenuViewModel"] = addMenuViewModel;
                 return View(addMenuViewModel);
+               
             }
             else
                 return RedirectToAction("Home/Index");

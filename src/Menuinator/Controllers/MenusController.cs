@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Menuinator.Data;
 using Menuinator.Models;
+using Menuinator.ViewModels.Menu_view_models;
+using Menuinator.Models.SupportTables;
+using System.Security.Claims;
+
 
 namespace Menuinator.Controllers
 {
@@ -45,7 +49,27 @@ namespace Menuinator.Controllers
         // GET: Menus/Create
         public IActionResult Create()
         {
-            return View();
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+            var description = "";
+            var mealCount = 5;
+            var weatherTypeID = 0;
+
+            if (userId != null)
+            {
+                AddMenuViewModel addMenuViewModel = new AddMenuViewModel(
+                        userId,
+                        description,
+                        mealCount,
+                        weatherTypeID,
+                       _context.WeatherTypes.ToList());
+
+                return View(addMenuViewModel);
+            }
+            else
+                return RedirectToAction("Home/Index");
+
         }
 
         // POST: Menus/Create
@@ -53,15 +77,28 @@ namespace Menuinator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,DateCreated")] Menu menu)
+        //        public async Task<IActionResult> Create([Bind("ID,DateCreated")] AddMenuViewModel addMenuViewModel)
+        public async Task<IActionResult> Create(AddMenuViewModel addMenuViewModel)
         {
-            if (ModelState.IsValid)
+            //    if (ModelState.IsValid)
+            if (TempData.ContainsKey("AddMenuViewModel"))
             {
-                _context.Add(menu);
+                WeatherType newWeatherType = _context.WeatherTypes.Single(w => w.ID == addMenuViewModel.WeatherTypeID);
+
+                Menu newMenu = new Menu
+                {
+                    Description = addMenuViewModel.Description,
+                    UserID = addMenuViewModel.UserID,
+                    WeatherTypeID = newWeatherType.ID,
+                    mealCount = addMenuViewModel.MealCount,
+                    DateCreated = addMenuViewModel.DateCreated
+                };
+
+                _context.Add(newMenu);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(menu);
+            return View(addMenuViewModel);
         }
 
         // GET: Menus/Edit/5

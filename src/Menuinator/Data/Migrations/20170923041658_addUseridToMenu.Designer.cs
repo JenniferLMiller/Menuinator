@@ -8,9 +8,10 @@ using Menuinator.Data;
 namespace Menuinator.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170923041658_addUseridToMenu")]
+    partial class addUseridToMenu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -168,6 +169,8 @@ namespace Menuinator.Data.Migrations
                     b.Property<int>("mealCount");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("WeatherTypeID");
 
                     b.ToTable("Menus");
                 });
@@ -410,6 +413,14 @@ namespace Menuinator.Data.Migrations
                     b.HasOne("Menuinator.Models.Menu", "Menu")
                         .WithMany()
                         .HasForeignKey("MenuID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Menuinator.Models.Menu", b =>
+                {
+                    b.HasOne("Menuinator.Models.SupportTables.WeatherType", "WeatherType")
+                        .WithMany()
+                        .HasForeignKey("WeatherTypeID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

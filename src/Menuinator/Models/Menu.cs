@@ -12,7 +12,9 @@ namespace Menuinator.Models
         public int mealCount { get; set; }
 
         public int WeatherTypeID { get; set; }
-        public WeatherType WeatherType { get; set; }
+     //   public WeatherType WeatherType { get; set; }
+
+        public string UserID { get; set; }
 
     }
 }

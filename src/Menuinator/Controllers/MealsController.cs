@@ -119,7 +119,7 @@ namespace Menuinator.Controllers
                 CookingTime newCookingTime = _context.CookingTimes.Single(t => t.ID == addMealViewModel.CookingTimeID);
                 PrepTime newPrepTime = _context.PrepTimes.Single(p => p.ID == addMealViewModel.PrepTimeID);
 
-                //Add the new default meal to the default meal table
+                //Add the new meal to the meal table
                 Meal newMeal = new Meal
                 {
                     Name = addMealViewModel.Name,
