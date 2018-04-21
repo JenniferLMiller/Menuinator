@@ -49,7 +49,7 @@ namespace Menuinator.Controllers
             var userId = claim.Value;
             var mealCount = 5;
             var description = "";
-            var weatherTypeId = 0;
+    //        var weatherTypeId = 0;
 
             if (userId != null)
             {
@@ -57,12 +57,9 @@ namespace Menuinator.Controllers
                         description,
                         userId,
                         mealCount,
-                        weatherTypeId,
+            //            weatherTypeId,
                        _context.WeatherTypes.ToList());
-
-                //TempData["AddMenuViewModel"] = addMenuViewModel;
                 return View(addMenuViewModel);
-               
             }
             else
                 return RedirectToAction("Home/Index");

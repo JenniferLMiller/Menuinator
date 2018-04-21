@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{48986E38-3FF1-42C9-A42A-6632A54C023A}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Menuinator", "src\Menuinator\Menuinator.xproj", "{88071F9F-1B29-425A-82B2-EB2CF173C83E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menuinator", "src\Menuinator\Menuinator.csproj", "{88071F9F-1B29-425A-82B2-EB2CF173C83E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,5 +23,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{88071F9F-1B29-425A-82B2-EB2CF173C83E} = {48986E38-3FF1-42C9-A42A-6632A54C023A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F814B7D3-1D95-4A12-8CE7-1A20C29B69CD}
 	EndGlobalSection
 EndGlobal

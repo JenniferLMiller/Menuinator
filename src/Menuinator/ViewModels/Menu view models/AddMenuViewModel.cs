@@ -6,8 +6,6 @@ using Menuinator.Models.SupportTables;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Menuinator.ViewModels.Common_Classes;
-using System.Runtime.Serialization;
-//using System.Runtime.Serialization.Formatters.Soap;
 
 
 namespace Menuinator.ViewModels.Menu_view_models
@@ -40,7 +38,7 @@ namespace Menuinator.ViewModels.Menu_view_models
             string description,
             string userId,
             int mealCount,
-            int weatherTypeID,
+     //       int weatherTypeID,
             IEnumerable<WeatherType> weatherType)
         {    
             Description = description;
@@ -49,8 +47,8 @@ namespace Menuinator.ViewModels.Menu_view_models
             // include user id as foreign key to link meals with user
             UserID = userId;
 
-            // include Weather type id as a foreign key to the weather type table
-            WeatherTypeID = weatherTypeID;
+      //      // include Weather type id as a foreign key to the weather type table
+      //      WeatherTypeID = weatherTypeID;
 
             // create Weather Type list
             WeatherTypes = new List<SelectListItem>();

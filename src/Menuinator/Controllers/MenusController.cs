@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Menuinator.Data;
 using Menuinator.Models;
-using Menuinator.ViewModels.Menu_view_models;
 using Menuinator.Models.SupportTables;
+using Menuinator.ViewModels.Menu_view_models;
 using System.Security.Claims;
-
+using Menuinator.ViewModels.Common_Classes;
 
 namespace Menuinator.Controllers
 {
@@ -54,7 +54,7 @@ namespace Menuinator.Controllers
             var userId = claim.Value;
             var description = "";
             var mealCount = 5;
-            var weatherTypeID = 0;
+     //       var weatherTypeID = 0;
 
             if (userId != null)
             {
@@ -62,7 +62,7 @@ namespace Menuinator.Controllers
                         userId,
                         description,
                         mealCount,
-                        weatherTypeID,
+             //           weatherTypeID,
                        _context.WeatherTypes.ToList());
 
                 return View(addMenuViewModel);
@@ -77,21 +77,19 @@ namespace Menuinator.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //        public async Task<IActionResult> Create([Bind("ID,DateCreated")] AddMenuViewModel addMenuViewModel)
         public async Task<IActionResult> Create(AddMenuViewModel addMenuViewModel)
         {
-            //    if (ModelState.IsValid)
-            if (TempData.ContainsKey("AddMenuViewModel"))
+            if (ModelState.IsValid)
             {
                 WeatherType newWeatherType = _context.WeatherTypes.Single(w => w.ID == addMenuViewModel.WeatherTypeID);
 
                 Menu newMenu = new Menu
                 {
                     Description = addMenuViewModel.Description,
-                    UserID = addMenuViewModel.UserID,
-                    WeatherTypeID = newWeatherType.ID,
-                    mealCount = addMenuViewModel.MealCount,
-                    DateCreated = addMenuViewModel.DateCreated
+                    UserID = User.Identity.Name,
+                    WeatherType = newWeatherType,  
+                    MealCount = addMenuViewModel.MealCount,
+                    DateCreated = DateTime.Now
                 };
 
                 _context.Add(newMenu);

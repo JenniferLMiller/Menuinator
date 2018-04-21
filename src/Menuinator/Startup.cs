@@ -15,11 +15,16 @@ using Menuinator.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+//using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Menuinator
 {
     public class Startup
     {
+        // public class SessionStateTempDataProvider : ITempDataProvider
+        // {
+        // }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -45,6 +50,9 @@ namespace Menuinator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add session to use tempdata
+           // services.AddSession();
+
             // require SSL  
             services.Configure<MvcOptions>(options =>
             {
@@ -68,6 +76,8 @@ namespace Menuinator
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+           // services.AddMvc()
+          //       .AddSessionStateTempDataProvider();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -108,6 +118,8 @@ namespace Menuinator
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+           // app.UseSession();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
